@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist - Our Coffee Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 10px;
+            background-color: #fff7f0;
+            color: #5b3a29;
+        }
+        header, footer {
+            background-color: #8B5E3B;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 0;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        #wishlist li {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            list-style: none;
+        }
+        button {
+            margin-left: 10px;
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+        #search {
+            margin: 20px 0;
+            padding: 5px;
+            width: 50%;
+        }
+    </style>
+    <script>
+        function displayWishlist() {
+            const wishlistContainer = document.getElementById('wishlist');
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlistContainer.innerHTML = '';
+
+            if (wishlist.length === 0) {
+                wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
+            } else {
+                wishlist.forEach((item, i) => {
+                    const listItem = document.createElement('li');
+
+                    // Handle if item is object or string
+                    const itemName = typeof item === 'object' ? item.name : item;
+                    const itemPrice = item.price ? ` - ₹${item.price}` : '';
+                    const image = item.image ? `<img src="${item.image}" width="80" style="vertical-align: middle; margin-right: 10px;">` : '';
+
+                    listItem.innerHTML = `
+                        ${image}<strong>${itemName}</strong>${itemPrice}
+                        <button onclick="removeFromWishlist(${i})">Remove</button>
+                        <button onclick="addToCart('${itemName}')">Add to Cart</button>
+                    `;
+                    wishlistContainer.appendChild(listItem);
+                });
+            }
+        }
+
+        function removeFromWishlist(index) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist.splice(index, 1);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            displayWishlist();
+        }
+
+        function addToCart(itemName) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(itemName);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Added to cart!');
+        }
+
+        function filterWishlist() {
+            const keyword = document.getElementById('search').value.toLowerCase();
+            const items = document.querySelectorAll('#wishlist li');
+            items.forEach(item => {
+                item.style.display = item.textContent.toLowerCase().includes(keyword) ? 'block' : 'none';
+            });
+        }
+
+        window.onload = displayWishlist;
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Our Coffee Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="wishlist.html">Wishlist</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Your Wishlist</h2>
+            <input type="text" id="search" placeholder="Search in wishlist..." oninput="filterWishlist()">
+            <ul id="wishlist">
+                <!-- Wishlist items will be displayed here -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Our Coffee Shop</p>
+    </footer>
+</body>
+</html>

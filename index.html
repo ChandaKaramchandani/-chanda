@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to Our Coffee Shop</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background-color: white;
+      color: #4B2E2B;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: linear-gradient(to right, #5C4033, #A9746E);
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    header h1::before {
+      content: "☕";
+      font-size: 26px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #FFDAB9;
+    }
+
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -3px;
+      left: 0;
+      background-color: #FFDAB9;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+      border-radius: 12px;
+      margin-top: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      background-color: #8B5E3B;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 💖 Stylish Header -->
+  <header>
+    <h1>Our Coffee Shop</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <h2 id="dynamicText">Welcome to Our Coffee Shop!</h2>
+    <img id="dynamicImage" class="hero-image" src="homeimage.jpg" alt="Coffee Shop" />
+    <p id="dynamicParagraph">
+      Enjoy the best coffee in town, made from freshly roasted beans. Our cozy atmosphere and friendly staff make it the perfect place to relax and enjoy your favorite brew.
+    </p>
+    <p>Join us for a cup of coffee and experience the warmth of our community!</p>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 Our Coffee Shop</p>
+    <div class="social-icons">
+      <a href="#" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+      <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="#" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="#" target="_blank"><i class="fab fa-pinterest"></i> Pinterest</a>
+    </div>
+  </footer>
+
+  <!-- JS for Dynamic Content -->
+  <script>
+    let images = ["homeimage.jpg", "home2.jpg"];
+    let texts = ["Welcome to Our Coffee Shop!", "Discover the Best Coffee in Town!"];
+    let paragraphs = [
+      "Enjoy the best coffee in town, made from freshly roasted beans. Our cozy atmosphere and friendly staff make it the perfect place to relax and enjoy your favorite brew.",
+      "Sip, relax, and enjoy our handcrafted coffee made with love. Your perfect coffee moment starts here!"
+    ];
+    let index = 0;
+    function changeContent() {
+      index = (index + 1) % images.length;
+      document.getElementById("dynamicImage").src = images[index];
+      document.getElementById("dynamicText").innerText = texts[index];
+      document.getElementById("dynamicParagraph").innerText = paragraphs[index];
+    }
+    setInterval(changeContent, 2000);
+  </script>
+
+</body>
+</html>

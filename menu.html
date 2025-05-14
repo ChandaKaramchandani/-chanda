@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Our Coffee Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function addToCart(item, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ item, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(item + " has been added to your cart!");
+        }
+
+        function addToWishlist(item) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            if (!wishlist.includes(item)) {
+                wishlist.push(item);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                alert(item + " has been added to your wishlist!");
+            } else {
+                alert(item + " is already in your wishlist!");
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: url('menu background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #8B5E3B;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ✅ UPDATED HEADER START */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #5c3d28;
+            color: white;
+        }
+
+        .header-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #3f271a;
+        }
+        /* ✅ UPDATED HEADER END */
+
+        .menu-image {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 10px auto;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            margin: 10px;
+            width: 60%;
+            border-radius: 8px;
+        }
+
+        .menu-item img {
+            width: 100px;
+            margin-right: 15px;
+        }
+
+        .menu-details {
+            flex-grow: 1;
+        }
+
+        .menu-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        footer {
+            background-color: #8B5E3B;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="Coffee Shop Logo" class="header-image">
+        <h1 style="margin-left: 20px;">Our Coffee Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="wishlist.html">Wishlist</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Our Menu</h2>
+            <img src="coffe (2).jpg" alt="Coffee Menu" class="menu-image">
+            <div class="menu-list">
+                <div class="menu-item">
+                    <img src="coffe (1).jpg" alt="Espresso">
+                    <div class="menu-details">
+                        <strong>Espresso - $3.00</strong>
+                    </div>
+                    <div class="menu-actions">
+                        <button onclick="addToCart('Espresso', 3.00)">Add to Cart</button>
+                        <button onclick="addToWishlist('Espresso')">Add to Wishlist</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="cacoffe.jpg" alt="Latte">
+                    <div class="menu-details">
+                        <strong>Latte - $4.00</strong>
+                    </div>
+                    <div class="menu-actions">
+                        <button onclick="addToCart('Latte', 4.00)">Add to Cart</button>
+                        <button onclick="addToWishlist('Latte')">Add to Wishlist</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="lcoffe.jpg" alt="Cappuccino">
+                    <div class="menu-details">
+                        <strong>Cappuccino - $4.50</strong>
+                    </div>
+                    <div class="menu-actions">
+                        <button onclick="addToCart('Cappuccino', 4.50)">Add to Cart</button>
+                        <button onclick="addToWishlist('Cappuccino')">Add to Wishlist</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="lcoffe.jpg" alt="Mocha">
+                    <div class="menu-details">
+                        <strong>Mocha - $5.00</strong>
+                    </div>
+                    <div class="menu-actions">
+                        <button onclick="addToCart('Mocha', 5.00)">Add to Cart</button>
+                        <button onclick="addToWishlist('Mocha')">Add to Wishlist</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="icewater.jpg" alt="Cold Brew">
+                    <div class="menu-details">
+                        <strong>Cold Brew - $4.00</strong>
+                    </div>
+                    <div class="menu-actions">
+                        <button onclick="addToCart('Cold Brew', 4.00)">Add to Cart</button>
+                        <button onclick="addToWishlist('Cold Brew')">Add to Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Our Coffee Shop</p>
+    </footer>
+</body>
+</html>
